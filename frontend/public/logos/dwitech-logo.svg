@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80" fill="none">
+  <!-- DWITECH Brand Mark -->
+  <g transform="translate(6, 12)">
+    <rect x="4" y="4" width="52" height="52" rx="8" fill="#0F172A" stroke="#2563EB" stroke-width="2.5"/>
+    <!-- Polymer / Engineered Hexagon -->
+    <circle cx="30" cy="30" r="14" stroke="#60A5FA" stroke-width="3" stroke-dasharray="4 2"/>
+    <rect x="23" y="23" width="14" height="14" rx="3" fill="#2563EB"/>
+  </g>
+  <text x="74" y="46" font-family="'Barlow', 'Inter', sans-serif" font-size="34" font-weight="800" fill="#0F172A" letter-spacing="3">DWITECH</text>
+  <text x="76" y="64" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#2563EB" letter-spacing="2">RUBBER &amp; ENGINEERED COMPONENTS</text>
+</svg>

@@ -1,0 +1,25 @@
+const logger = require('../utils/logger');
+const { errorResponse } = require('../utils/responseFormatter');
+
+const notFound = (req, res, next) => {
+  const error = new Error(`Resource Not Found - ${req.originalUrl}`);
+  res.status(404);
+  next(error);
+};
+
+const errorHandler = (err, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  logger.error(`[${req.method}] ${req.originalUrl} - ${err.message}`, err.stack);
+
+  return errorResponse(
+    res,
+    err.message || 'Internal Server Error',
+    statusCode,
+    process.env.NODE_ENV === 'production' ? null : { stack: err.stack }
+  );
+};
+
+module.exports = {
+  notFound,
+  errorHandler
+};
