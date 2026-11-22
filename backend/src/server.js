@@ -2,7 +2,7 @@ const app = require('./app');
 const config = require('./config/environment');
 const logger = require('./utils/logger');
 
-const server = app.listen(config.PORT, () => {
+const server = app.listen(config.PORT, '0.0.0.0', () => {
   logger.info(`========================================================`);
   logger.info(`  SARAR INDUSTRIES BACKEND SERVER RUNNING`);
   logger.info(`  Port: ${config.PORT}`);
