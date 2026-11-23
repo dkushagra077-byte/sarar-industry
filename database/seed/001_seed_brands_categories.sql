@@ -102,6 +102,7 @@ SET name = EXCLUDED.name,
 
 -- 5. Replace the old SAKET catalogue, then seed SAKET & DWITECH products
 DELETE FROM products WHERE brand_id = 'a1111111-1111-1111-1111-111111111111';
+DELETE FROM products WHERE brand_id = 'b2222222-2222-2222-2222-222222222222';
 
 INSERT INTO products (
     id, name, slug, brand_id, category_id, short_description, description, 

@@ -20,14 +20,14 @@ This document outlines the setup process for Supabase PostgreSQL database tables
 3. Store them only in the backend environment:
    ```env
    SUPABASE_URL=https://your-project.supabase.co
-   SUPABASE_SECRET_KEY=
+   SUPABASE_SECRET_KEY=<server-side-secret-from-Supabase>
    ```
    Never put this secret key in frontend code or commit it to Git. The backend still accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` during migration.
 ---
 
 ## 3. Run Database Migrations
 
-You can run the schema migrations directly in the Supabase Dashboard SQL Editor:
+You can run the schema setup directly in the Supabase Dashboard SQL Editor. The schema file contains `DROP TABLE` statements, so use it only once in a new, empty project; rerunning it deletes existing database tables and their data.
 
 1. Open the **SQL Editor** in Supabase.
 2. Open `database/schema.sql` from this repository.

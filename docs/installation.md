@@ -7,7 +7,7 @@ This document provides step-by-step instructions to set up the SARAR INDUSTRIES 
 ## 1. System Requirements
 
 - **Operating System**: Windows, macOS, or Linux
-- **Node.js**: v18.0.0 or later (v20+ recommended)
+- **Node.js**: v22.0.0 or later (the deployment configuration pins v24.22.1)
 - **Package Manager**: npm v9+
 - **Version Control**: Git
 
@@ -65,7 +65,7 @@ TRUST_PROXY=0
 
 # Server-side Supabase key only
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SECRET_KEY=
+SUPABASE_SECRET_KEY=<server-side-secret-from-Supabase>
 SUPABASE_STORAGE_BUCKET=product-media
 
 # Local fallback admin account (keep private)
