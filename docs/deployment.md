@@ -35,6 +35,21 @@ node backend/src/server.js
 
 The backend listens on the host-provided `PORT` and binds to `0.0.0.0`.
 
+### Deploy only the backend API
+
+If you host the frontend separately, create the API service from `render-backend.yaml` (Render's Blueprint form lets you select a Blueprint file other than `render.yaml`). This file sets the service root to `backend`, uses `npm ci` to install the lockfile dependencies, and starts the API with `npm start`. Do not use `yarn build`: the backend has no compilation step or `build` script, which caused the `Command "build" not found` error.
+
+For a service created manually, set these exact Render fields:
+
+- **Root Directory:** `backend`
+- **Build Command:** `npm ci`
+- **Start Command:** `npm start`
+- **Health Check Path:** `/api/health`
+
+Set `FRONTEND_URL` to the deployed website's origin (scheme and hostname only, no path), along with `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and a generated `JWT_SECRET`. If the website uses more than one origin, add the other origins as comma-separated values in `CORS_ORIGINS`.
+
+For a separately hosted frontend, set `REACT_APP_API_URL` in its build environment to the API's full URL ending in `/api` (for example, `https://your-api.onrender.com/api`) before building. The default `/api` continues to work when the frontend and backend are served by the combined `render.yaml` service.
+
 ## 4. Configure the production environment
 
 The Blueprint sets `NODE_ENV=production`, generates `JWT_SECRET`, and sets `SUPABASE_STORAGE_BUCKET=product-media`. It asks for `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Render provides `RENDER_EXTERNAL_URL`, which the backend uses as `FRONTEND_URL` by default. If you later attach a custom domain, set `FRONTEND_URL` to that site's origin in Render and update the SEO URLs described below.

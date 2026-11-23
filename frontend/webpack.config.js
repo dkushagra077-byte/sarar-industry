@@ -52,7 +52,7 @@ module.exports = (env, argv) => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
-        'process.env.REACT_APP_API_URL': JSON.stringify('/api')
+        'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || '/api')
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),

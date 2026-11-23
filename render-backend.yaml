@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: sarar-industry-api
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    rootDir: backend
+    autoDeployTrigger: commit
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.22.1
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        value: product-media
+      - key: FRONTEND_URL
+        sync: false
