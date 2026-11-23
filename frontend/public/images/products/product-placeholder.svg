@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="title description">
+  <title id="title">Product image placeholder</title>
+  <desc id="description">Industrial product image unavailable</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" rx="24" fill="url(#background)"/>
+  <g fill="none" stroke="#64748b" stroke-width="10" opacity=".72">
+    <ellipse cx="400" cy="236" rx="152" ry="54" fill="url(#metal)"/>
+    <path d="M248 236v110c0 30 68 54 152 54s152-24 152-54V236" fill="url(#metal)"/>
+    <ellipse cx="400" cy="346" rx="152" ry="54"/>
+    <ellipse cx="400" cy="236" rx="66" ry="23"/>
+  </g>
+  <text x="400" y="478" fill="#334155" font-family="Arial, sans-serif" font-size="25" font-weight="600" text-anchor="middle">Product image coming soon</text>
+</svg>

@@ -15,18 +15,14 @@ This document outlines the setup process for Supabase PostgreSQL database tables
 
 ## 2. Obtain API Keys & URL
 
-1. In your Supabase project dashboard, navigate to **Project Settings** → **API**.
-2. Note the following values:
-   - **Project URL**: `https://xyzcompany.supabase.co`
-   - **anon / public key**: Used for public frontend client (if needed)
-   - **service_role key**: Used securely on the Node.js backend
-3. Add these to your `backend/.env` file:
+1. In the Supabase dashboard, open **Project Settings** > **API Keys**.
+2. Copy the **Project URL** and the server-side **Secret key**.
+3. Store them only in the backend environment:
    ```env
-   SUPABASE_URL=https://xyzcompany.supabase.co
-   SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_SECRET_KEY=
    ```
-
+   Never put this secret key in frontend code or commit it to Git. The backend still accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` during migration.
 ---
 
 ## 3. Run Database Migrations
@@ -62,17 +58,12 @@ You can run the schema migrations directly in the Supabase Dashboard SQL Editor:
 ## 5. Seed Initial Brands & Products
 
 1. In the Supabase SQL Editor, open `database/seed/001_seed_brands_categories.sql`.
-2. Paste and click **Run**.
-3. This creates:
-   - **SAKET** brand and its industrial insulation & sealing categories.
-   - **DWITECH** brand and its rubber & engineered component categories.
-   - Initial products with authentic specifications.
-   - Default administrator account:
-     - Email: `sararindustries@gmail.com`
-     - Password: `Admin@Sarar2024!`
-
----
-
+2. Run it to add SAKET and DWITECH brands, categories, and current catalogue products.
+3. Create an administrator with a unique password. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in the backend environment (password must be at least 16 characters), then run:
+   ```bash
+   npm run bootstrap:admin --prefix backend
+   ```
+4. Remove `ADMIN_PASSWORD` from production runtime variables after this one-time command. The application no longer seeds or displays shared default admin credentials.
 ## 6. Configure Supabase Storage for Product Images
 
 1. In the Supabase dashboard, click **Storage**.

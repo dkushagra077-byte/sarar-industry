@@ -22,7 +22,7 @@ const ProductDetailPage = () => {
         const res = await productService.getByBrandAndSlug(brandSlug, productSlug);
         if (res.data) {
           setProduct(res.data);
-          setActiveImage(res.data.main_image_url || '/images/products/placeholder.jpg');
+          setActiveImage(res.data.main_image_url || '/images/products/product-placeholder.svg');
         }
       } catch (err) {
         setError(err.message || 'Product not found');
@@ -107,6 +107,10 @@ const ProductDetailPage = () => {
               <img
                 src={activeImage}
                 alt={product.name}
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  setActiveImage('/images/products/product-placeholder.svg');
+                }}
                 style={{
                   maxHeight: '100%',
                   maxWidth: '100%',
@@ -114,7 +118,7 @@ const ProductDetailPage = () => {
                 }}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = isSaket ? '/logos/saket-logo.svg' : '/logos/dwitech-logo.svg';
+                  e.target.src = isSaket ? '/logos/Saket.jpeg' : '/logos/Dwitech.jpeg';
                 }}
               />
             </div>
@@ -133,7 +137,7 @@ const ProductDetailPage = () => {
                     backgroundColor: '#ffffff'
                   }}
                 >
-                  <img src={product.main_image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  <img src={product.main_image_url || '/images/products/product-placeholder.svg'} alt={product.name} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = '/images/products/product-placeholder.svg'; }} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 {product.product_images.map((img) => (
                   <div
@@ -149,7 +153,7 @@ const ProductDetailPage = () => {
                       backgroundColor: '#ffffff'
                     }}
                   >
-                    <img src={img.image_url} alt={img.alt_text || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img src={img.image_url} alt={img.alt_text || product.name} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = '/images/products/product-placeholder.svg'; }} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                 ))}
               </div>

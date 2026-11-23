@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { COMPANY_INFO } from '../../utils/constants';
 
 const Navbar = ({ onOpenEnquiry }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 12);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    return () => window.removeEventListener('scroll', updateHeader);
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -52,19 +60,22 @@ const Navbar = ({ onOpenEnquiry }) => {
       </div>
 
       {/* Main Navbar */}
-      <header style={{
-        backgroundColor: '#ffffff',
+      <header className={`site-header${isScrolled ? ' site-header-scrolled' : ''}`} style={{
+        backgroundColor: isScrolled ? 'rgba(255,255,255,0.96)' : '#ffffff',
         borderBottom: '1px solid #e2e8f0',
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        boxShadow: '0 2px 8px rgba(11,29,51,0.04)'
+        boxShadow: isScrolled ? '0 10px 28px rgba(11,29,51,0.12)' : '0 2px 8px rgba(11,29,51,0.04)',
+        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        transition: 'background-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease'
       }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '76px' }}>
           
           {/* Logo */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-            <img 
+            <img
+              className="site-wordmark"
               src="/logos/sarar-logo.svg" 
               alt="SARAR INDUSTRIES" 
               style={{ height: '46px', width: 'auto' }} 
@@ -147,7 +158,7 @@ const Navbar = ({ onOpenEnquiry }) => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div style={{
+          <div className="mobile-menu-panel" style={{
             backgroundColor: '#ffffff',
             borderTop: '1px solid #e2e8f0',
             padding: '20px',

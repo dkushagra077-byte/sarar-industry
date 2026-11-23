@@ -31,7 +31,7 @@ const BrandsGrid = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
                 <img
-                  src="/logos/saket-logo.svg"
+                  src="/logos/Saket.jpeg"
                   alt="SAKET Brand"
                   style={{ height: '52px', width: 'auto' }}
                 />
@@ -82,7 +82,7 @@ const BrandsGrid = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
                 <img
-                  src="/logos/dwitech-logo.svg"
+                  src="/logos/Dwitech.jpeg"
                   alt="DWITECH Brand"
                   style={{ height: '52px', width: 'auto' }}
                 />

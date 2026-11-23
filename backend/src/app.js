@@ -9,29 +9,49 @@ const { apiLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 
-// Security HTTP headers
+// Respect the public proxy's client IP in production for per-customer rate limits.
+const trustProxy = /^\d+$/.test(String(config.TRUST_PROXY)) ? Number(config.TRUST_PROXY) : config.TRUST_PROXY;
+app.set('trust proxy', trustProxy);
+
+// Keep local development convenient while applying a production CSP and HSTS.
 app.use(helmet({
-  crossOriginResourcePolicy: false
+  contentSecurityPolicy: config.NODE_ENV === 'production' ? {
+    directives: {
+      defaultSrc: ["'self'"],
+      baseUri: ["'self'"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
+      imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
+      connectSrc: ["'self'"],
+      upgradeInsecureRequests: []
+    }
+  } : false,
+  hsts: config.NODE_ENV === 'production' ? { maxAge: 31536000, includeSubDomains: true } : false,
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
 // CORS configuration
-const allowedOrigins = [
+const allowedOrigins = new Set([
   config.FRONTEND_URL,
-  'http://localhost:3000',
-  'http://localhost:5000',
-  'http://127.0.0.1:3000',
-  'http://127.0.0.1:5000'
-];
+  ...config.CORS_ORIGINS,
+  ...(config.NODE_ENV === 'production' ? [] : [
+    'http://localhost:3000', 'http://localhost:5000',
+    'http://127.0.0.1:3000', 'http://127.0.0.1:5000',
+    `http://localhost:${config.PORT}`, `http://127.0.0.1:${config.PORT}`
+  ])
+].filter(Boolean).map((value) => {
+  try { return new URL(value).origin; } catch { return value; }
+}));
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl, postman)
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || origin.endsWith('.netlify.app')) {
-      return callback(null, true);
-    }
-    return callback(null, true); // Allow all in dev/staging while maintaining credentials
+    if (!origin || allowedOrigins.has(origin)) return callback(null, true);
+    return callback(new Error('Origin is not allowed by CORS.'));
   },
-  credentials: true,
+  credentials: false,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));

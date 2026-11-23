@@ -1,5 +1,8 @@
+process.env.NODE_ENV = 'test';
+
 const http = require('http');
 const app = require('../src/app');
+const config = require('../src/config/environment');
 
 let server;
 const PORT = 5099;
@@ -78,8 +81,8 @@ async function runTests() {
 
     // 7. Login
     const login = await request('/api/auth/login', 'POST', {
-      email: 'sararindustries@gmail.com',
-      password: 'Admin@Sarar2024!'
+      email: config.ADMIN_EMAIL,
+      password: config.ADMIN_PASSWORD
     });
     console.assert(login.status === 200, 'Admin login should succeed');
     const token = login.body.data.token;
@@ -99,7 +102,7 @@ async function runTests() {
       phone: '+919123841340',
       email: 'client@example.com',
       brand: 'saket',
-      product: 'SAKET Ceramic Fiber Insulation Blanket',
+      product: 'Ceramic fibre blanket',
       quantity: '20 Rolls',
       message: 'Need urgent quote for 20 rolls of ceramic blanket'
     });

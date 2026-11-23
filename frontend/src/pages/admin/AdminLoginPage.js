@@ -9,8 +9,8 @@ const AdminLoginPage = () => {
   const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('sararindustries@gmail.com');
-  const [password, setPassword] = useState('Admin@Sarar2024!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -51,6 +51,7 @@ const AdminLoginPage = () => {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <img
+            className="site-wordmark"
             src="/logos/sarar-logo.svg"
             alt="SARAR INDUSTRIES"
             style={{ height: '48px', margin: '0 auto 16px' }}
@@ -61,21 +62,6 @@ const AdminLoginPage = () => {
           <p style={{ color: '#64748b', fontSize: '0.875rem', margin: 0 }}>
             Sign in with authorized corporate credentials
           </p>
-        </div>
-
-        {/* Demo Credentials Alert Box */}
-        <div style={{
-          backgroundColor: '#f8fafc',
-          border: '1px solid #e2e8f0',
-          borderRadius: '6px',
-          padding: '12px 14px',
-          marginBottom: '24px',
-          fontSize: '0.8125rem',
-          color: '#334155'
-        }}>
-          <div><strong>Initial Admin Credentials:</strong></div>
-          <div style={{ marginTop: '4px' }}>Email: <code>sararindustries@gmail.com</code></div>
-          <div>Password: <code>Admin@Sarar2024!</code></div>
         </div>
 
         <form onSubmit={handleSubmit}>

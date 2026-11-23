@@ -60,25 +60,27 @@ Edit `backend/.env` with your preferred configuration:
 PORT=5000
 NODE_ENV=development
 FRONTEND_URL=http://localhost:3000
+CORS_ORIGINS=
+TRUST_PROXY=0
 
-# Supabase PostgreSQL Configuration
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
-SUPABASE_ANON_KEY=your-supabase-anon-key
+# Server-side Supabase key only
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SECRET_KEY=
 SUPABASE_STORAGE_BUCKET=product-media
 
-# Authentication
-JWT_SECRET=your-random-jwt-secret-key-32-chars-minimum
+# Local fallback admin account (keep private)
+ADMIN_EMAIL=your-admin-email@example.com
+ADMIN_PASSWORD=use-a-unique-password-at-least-16-characters
+
+# Production must use a random, unique secret
+JWT_SECRET=generate-a-random-secret-for-this-environment
 JWT_EXPIRES_IN=7d
 
-# Official Company Information
-COMPANY_NAME=SARAR INDUSTRIES
-CONTACT_PERSON=Siddharth Dwivedi
-CONTACT_PHONE=+919123841340
-CONTACT_EMAIL=sararindustries@gmail.com
-WHATSAPP_NUMBER=919123841340
 ```
 
+Enquiries are stored in the database and reviewed from the administrator dashboard. The website does not send email notifications for new enquiries.
+
+In production, configure a real Supabase project. Production startup now fails if Supabase, the required tables, a strong `JWT_SECRET`, or `FRONTEND_URL` are missing. The local JSON enquiry store is for development only and may not persist on hosted filesystems.
 ---
 
 ## 5. Running the Application in Development Mode
@@ -125,8 +127,6 @@ ALL BACKEND API VERIFICATIONS PASSED 100%
 
 ---
 
-## 7. Admin Credentials for Local Testing
+## 7. Administrator Setup
 
-- **URL**: `http://localhost:3000/admin/login` (or `http://localhost:5000/admin/login`)
-- **Email**: `sararindustries@gmail.com`
-- **Password**: `Admin@Sarar2024!`
+In local development, use the private `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `backend/.env`. For Supabase, set those variables temporarily and run `npm run bootstrap:admin --prefix backend`, then remove `ADMIN_PASSWORD` from the production runtime environment. The login page does not contain shared credentials.

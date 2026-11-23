@@ -1,4 +1,4 @@
-const { supabase, isConfigured, memoryStore } = require('../config/database');
+const { supabase, isConfigured, memoryStore, persistEnquiries } = require('../config/database');
 const logger = require('../utils/logger');
 const crypto = require('crypto');
 
@@ -34,6 +34,7 @@ class Enquiry {
     }
 
     memoryStore.enquiries.unshift(newEnquiry);
+    persistEnquiries();
     const brand = newEnquiry.brand_id ? memoryStore.brands.find(b => b.id === newEnquiry.brand_id) : null;
     const product = newEnquiry.product_id ? memoryStore.products.find(p => p.id === newEnquiry.product_id) : null;
 
@@ -169,6 +170,7 @@ class Enquiry {
     const index = memoryStore.enquiries.findIndex(e => e.id === id);
     if (index === -1) return null;
     memoryStore.enquiries[index] = { ...memoryStore.enquiries[index], ...payload };
+    persistEnquiries();
     const updated = memoryStore.enquiries[index];
     const brand = updated.brand_id ? memoryStore.brands.find(b => b.id === updated.brand_id) : null;
     const product = updated.product_id ? memoryStore.products.find(p => p.id === updated.product_id) : null;

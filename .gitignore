@@ -8,6 +8,8 @@ backend/node_modules/
 backend/.env
 frontend/.env
 *.env.local
+backend/data/enquiries.json
+backend/data/enquiries.json.tmp
 
 # Production Build
 dist/

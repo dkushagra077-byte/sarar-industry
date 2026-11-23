@@ -46,7 +46,6 @@ const createEnquiry = async (req, res, next) => {
     });
 
     logger.info(`New Enquiry received from ${customer_name} (${company_name || 'Individual'}) - Phone: ${phone}`);
-
     return successResponse(
       res,
       created,

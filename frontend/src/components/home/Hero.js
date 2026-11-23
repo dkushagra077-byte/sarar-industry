@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = ({ onOpenEnquiry }) => {
   return (
-    <section style={{
+    <section className="hero-section" style={{
       backgroundColor: '#0b1d33',
       color: '#ffffff',
       padding: '90px 0 100px',

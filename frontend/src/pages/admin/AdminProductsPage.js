@@ -238,9 +238,10 @@ const AdminProductsPage = () => {
                   <tr key={p.id}>
                     <td style={{ width: 60 }}>
                       <img
-                        src={p.main_image_url || '/images/products/placeholder.jpg'}
+                        src={p.main_image_url || '/images/products/product-placeholder.svg'}
                         alt=""
                         style={{ width: 44, height: 44, objectFit: 'contain', backgroundColor: '#f8fafc', borderRadius: 4 }}
+                        onError={(e) => { e.target.onerror = null; e.target.src = '/images/products/product-placeholder.svg'; }}
                       />
                     </td>
                     <td>

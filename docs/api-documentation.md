@@ -48,7 +48,7 @@ The SARAR INDUSTRIES backend provides a complete RESTful API built with Express.
 ```json
 {
   "email": "sararindustries@gmail.com",
-  "password": "Admin@Sarar2024!"
+  "password": "<private administrator password>"
 }
 ```
 - **Response**:
@@ -59,7 +59,7 @@ The SARAR INDUSTRIES backend provides a complete RESTful API built with Express.
   "data": {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "user": {
-      "id": "u1111111-1111-1111-1111-111111111111",
+      "id": "d94f6e8a-c633-4c84-9a0c-3e90cbd1f451",
       "name": "Siddharth Dwivedi",
       "email": "sararindustries@gmail.com",
       "role": "superadmin"

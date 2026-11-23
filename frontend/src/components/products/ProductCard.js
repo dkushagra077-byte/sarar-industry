@@ -11,9 +11,9 @@ const ProductCard = ({ product, onEnquire }) => {
   const whatsappUrl = getWhatsAppLink(product.name, brandName);
 
   return (
-    <div className="industrial-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="industrial-card product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Product Image Area */}
-      <div style={{
+      <div className="product-card-media" style={{
         height: '210px',
         backgroundColor: '#f1f5f9',
         borderBottom: '1px solid #e2e8f0',
@@ -24,7 +24,8 @@ const ProductCard = ({ product, onEnquire }) => {
         overflow: 'hidden'
       }}>
         <img
-          src={product.main_image_url || '/images/products/placeholder.jpg'}
+          className="product-card-image"
+          src={product.main_image_url || '/images/products/product-placeholder.svg'}
           alt={product.name}
           style={{
             maxHeight: '100%',
@@ -34,9 +35,9 @@ const ProductCard = ({ product, onEnquire }) => {
             transition: 'transform 0.25s ease'
           }}
           onError={(e) => {
-            // Elegant SVG fallback on missing image
+            // Keep catalogue cards usable when a product image has not been supplied.
             e.target.onerror = null;
-            e.target.src = isSaket ? '/logos/saket-logo.svg' : '/logos/dwitech-logo.svg';
+            e.target.src = '/images/products/product-placeholder.svg';
           }}
         />
 

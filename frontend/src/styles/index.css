@@ -254,7 +254,101 @@ button, input, select, textarea {
 .industrial-card:hover {
   box-shadow: var(--shadow-lg);
   border-color: var(--color-slate-300);
+  transform: translateY(-4px);
+}
+
+.product-card-image {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-image {
+  transform: scale(1.045);
+}
+
+.site-wordmark {
+  transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.site-wordmark:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 4px 7px rgba(11, 29, 51, 0.16));
+}
+
+.btn:hover {
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active,
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.desktop-nav a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.desktop-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  content: '';
+  background: linear-gradient(90deg, var(--color-saket-accent), #f5b544);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.site-header {
+  will-change: box-shadow;
+}
+
+.mobile-menu-panel {
+  transform-origin: top;
+  animation: menu-drop-in 0.22s ease-out both;
+}
+
+.hero-section {
+  background-size: 140% 140%;
+  animation: hero-light-drift 18s ease-in-out infinite alternate;
+}
+
+[data-scroll-state='pending'] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+[data-scroll-state='visible'] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.48s ease, transform 0.48s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes menu-drop-in {
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.98); }
+  to { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+@keyframes hero-light-drift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(217, 119, 6, 0.75);
+  outline-offset: 3px;
 }
 
 /* Floating WhatsApp Button */
@@ -450,5 +544,21 @@ button, input, select, textarea {
   .section-py {
     padding-top: 48px;
     padding-bottom: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-scroll-state='pending'] {
+    opacity: 1;
+    transform: none;
   }
 }

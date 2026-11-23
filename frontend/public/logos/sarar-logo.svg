@@ -1,12 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80" fill="none">
-  <!-- Monogram Icon -->
-  <rect x="6" y="10" width="60" height="60" rx="10" fill="#0B1D33"/>
-  <path d="M22 26 H50 C52 26 53 28 51 29 L31 43 C29 44 30 47 32 47 H52" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="25" cy="54" r="3.5" fill="#D97706"/>
-  <circle cx="51" cy="22" r="3" fill="#D97706"/>
-  
-  <!-- Text Brand -->
-  <text x="78" y="44" font-family="'Barlow', 'Inter', sans-serif" font-size="28" font-weight="800" fill="#0B1D33" letter-spacing="2.5">SARAR</text>
-  <text x="210" y="44" font-family="'Barlow', 'Inter', sans-serif" font-size="28" font-weight="400" fill="#475569" letter-spacing="3.5">INDUSTRIES</text>
-  <text x="80" y="62" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#D97706" letter-spacing="1.8">INDUSTRIAL INSULATION &amp; SEALING SOLUTIONS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 90" role="img" aria-labelledby="title description">
+  <title id="title">SARAR INDUSTRIES</title>
+  <desc id="description">Industrial insulation and sealing solutions</desc>
+
+  <g class="brand-mark">
+    <rect x="8" y="12" width="66" height="66" rx="16" fill="#0B1D33"/>
+    <path d="M41 19 62 31v28L41 71 20 59V31l21-12Z" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M52 33H36c-4 0-7 3-7 6s3 6 7 6h10c4 0 7 3 7 6s-3 6-7 6H29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M30 62h22" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <text x="88" y="47" font-family="Barlow, Inter, Arial, sans-serif" font-size="32" font-weight="800" fill="#0B1D33" letter-spacing="1.5">SARAR</text>
+  <path d="M202 25v27" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+  <text x="216" y="46" font-family="Barlow, Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#475569" letter-spacing="2.4">INDUSTRIES</text>
+  <text x="90" y="68" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="700" fill="#B45309" letter-spacing="1.35">INDUSTRIAL INSULATION &amp; SEALING SOLUTIONS</text>
 </svg>

@@ -38,11 +38,12 @@ const Footer = () => {
         }}>
           {/* Company Brief */}
           <div>
-            <div style={{ marginBottom: 18 }}>
+            <div style={{ display: 'inline-flex', backgroundColor: '#ffffff', borderRadius: '6px', padding: '6px 9px', marginBottom: 18 }}>
               <img 
+                className="site-wordmark"
                 src="/logos/sarar-logo.svg" 
                 alt="SARAR INDUSTRIES" 
-                style={{ height: '42px', filter: 'brightness(0) invert(1)' }} 
+                style={{ height: '42px', width: 'auto' }}
               />
             </div>
             <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.7', marginBottom: '16px' }}>

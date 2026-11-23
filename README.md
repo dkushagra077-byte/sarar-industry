@@ -107,20 +107,9 @@ npm run install:all
 ```
 
 ### 3. Environment Configuration
-Copy the template and configure your credentials:
-```bash
-cp backend/.env.example backend/.env
-```
-Update `backend/.env` with your Supabase credentials:
-```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
-SUPABASE_ANON_KEY=your-supabase-anon-key
-JWT_SECRET=your-secure-random-jwt-key
-PORT=5000
-```
-*(Note: If you run without Supabase credentials initially, the backend automatically initializes a high-fidelity local seed store with all SAKET and DWITECH data so the system works immediately out-of-the-box!)*
+Copy `backend/.env.example` to `backend/.env`, then set the private database, admin, and JWT values. Use `SUPABASE_SECRET_KEY` on the server only. Keep `.env` out of Git. Local development can use the JSON enquiry fallback; production requires a verified Supabase connection. Enquiries are retained in the admin dashboard and are not sent by email.
 
+For a Supabase administrator, set `ADMIN_EMAIL` and a unique `ADMIN_PASSWORD` (at least 16 characters) in the backend environment and run `npm run bootstrap:admin --prefix backend`. Remove the password variable after the one-time setup.
 ### 4. Build Frontend
 ```bash
 npm run build
@@ -138,7 +127,7 @@ The application will be live at `http://localhost:5000` (serving both the React 
 
 - **Admin Login URL**: `/admin/login`
 - **Email**: `sararindustries@gmail.com`
-- **Initial Password**: `Admin@Sarar2024!`
+The login page does not ship with a default password. Configure a private administrator account as described above.
 
 The administrator dashboard allows:
 1. **Product Management**: Add, edit, delete, activate/deactivate, toggle featured, upload images to Supabase storage, edit JSON specifications and applications.
